@@ -209,11 +209,33 @@ h2 {
 .about-content {
     display: flex;
     align-items: center;
+    flex-direction: row;
     gap: 2rem;
+}
+
+.profile-image {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    object-fit: cover;
+    padding: 5px;
+    border: 3px solid #3498db; /* Changed to a blue color */
+    position: relative;
+    top: -40px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Increased shadow */
+    transition: all 0.3s ease;
+    filter: grayscale(20%) brightness(100%) contrast(105%); /* Added image filters */
+}
+
+.profile-image:hover {
+    transform: scale(1.05) rotate(5deg);
+    border-color: #e74c3c; /* Change border color on hover */
+    filter: grayscale(0%) brightness(105%) contrast(110%); /* Adjust filters on hover */
 }
 
 .about-text {
     max-width: max-content;
+    padding-right: 30px;
     text-align: justify;
 }
 
@@ -225,10 +247,24 @@ h2 {
 }
 
 .skill {
-    background-color: var(--card-bg-color);
+    background-color: rgba(122, 122, 122, 0.2);  
+    backdrop-filter: blur(3px);  
     padding: 0.5rem 1rem;
     border-radius: 20px;
     font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.8);  
+    box-shadow: 
+        0 4px 6px rgba(0, 0, 0, 0.1),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.skill:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+    transform: translateY(-2px);
+    box-shadow: 
+        0 6px 8px rgba(0, 0, 0, 0.15),
+        inset 0 1px 0 rgba(255, 255, 255, 0.2);
 }
 
 .timeline {
@@ -315,6 +351,7 @@ h2 {
     /* Adjust size as needed */
     padding-top: 5px;
     margin-right: 15px;
+    border-radius: 50px;
     /* Space between the logo and text */
 }
 
@@ -328,7 +365,7 @@ h2 {
     width: 100%;
     justify-content: space-between;
     align-items: center;
-    margin-top: 12px;
+    margin-top: 15px;
     color: var(--secondary-color);
     font-weight: bold;
 }
@@ -350,8 +387,8 @@ h2 {
 .timeline-content ul li {
     margin-bottom: 5px;
     /* Space between list items */
-    font-size: 15px;
-    font-family: sans-serif;
+    font-size: 16px;
+    font-family: "Roboto", sans-serif;
     text-align: justify;
     padding-bottom: 10px;
 }
@@ -557,16 +594,8 @@ textarea {
     transition: transform 0.2s ease;
 }
 
-
-@media (max-width: 690px) {
-    .timeline-item .metaInfo {
-        font-size: 10px;
-        flex-direction: column;
-        align-items: flex-start;
-    }
-}
-
 @media (max-width: 1100px) {
+    
     nav {
         flex-direction: column;
     }
@@ -630,8 +659,143 @@ textarea {
     }
 }
 
+@media (max-width: 935px) {
+    #about h2 {
+        text-align: center;
+        margin-bottom: 50px;
+    }
 
-@media screen and (max-width: 430px) {
+    .about-content {
+        display: flex;
+        align-items: center;
+        flex-direction: column-reverse;
+        gap: 2rem;
+    }
+    
+    .profile-image {
+        width: 200px;
+        height: 200px;
+        border-radius: 50%;
+        object-fit: cover;
+        padding: 5px;
+        border: 3px solid #3498db; /* Changed to a blue color */
+        position: relative;
+        margin-top: 20px;
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Increased shadow */
+        transition: all 0.3s ease;
+        filter: grayscale(20%) brightness(105%) contrast(110%); /* Added image filters */
+    }
+    
+    .profile-image:hover {
+        transform: scale(1.05) rotate(5deg);
+        border-color: #e74c3c; /* Change border color on hover */
+        filter: grayscale(0%) brightness(110%) contrast(120%); /* Adjust filters on hover */
+    }
+
+    .about-text {
+        text-align: center;
+    }
+
+    .about-text .skills-container {
+        display: flex;
+        flex-wrap: wrap;
+        margin: 0 auto;
+        justify-content: center;
+        gap: 1rem;
+        margin-top: 2rem;
+    }
+}
+
+@media (max-width: 690px) {
+    .timeline-item .metaInfo {
+        font-size: 10px;
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .about-text {
+        max-width: max-content;
+        padding: 0px;
+        text-align: center;
+    }
+
+    .about-content {
+        display: flex;
+        align-items: center;
+        flex-direction: column-reverse;
+        gap: 2rem;
+    }
+    
+    .profile-image {
+        width: 150px;
+        height: 150px;
+        border-radius: 50%;
+        object-fit: cover;
+        padding: 5px;
+        border: 3px solid #3498db; /* Changed to a blue color */
+        position: relative;
+        top: -20px;
+        margin-top: 20px;
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Increased shadow */
+        transition: all 0.3s ease;
+        filter: grayscale(20%) brightness(105%) contrast(110%); /* Added image filters */
+    }
+    
+    .profile-image:hover {
+        transform: scale(1.05) rotate(5deg);
+        border-color: #e74c3c; /* Change border color on hover */
+        filter: grayscale(0%) brightness(110%) contrast(120%); /* Adjust filters on hover */
+    }
+    #cursor {
+        display: none;
+    }
+    .timeline-content ul li {
+        text-align: left; 
+        font-size: 15px;
+    }
+}
+
+
+
+@media screen and (max-width: 432px) {
+
+    .about-text .skills-container {
+        display: flex;
+        flex-wrap: wrap;
+        margin: 0 auto;
+        justify-content: center;
+        gap: 1rem;
+        margin-top: 2rem;
+    }
+
+    .about-text p {
+        max-width: max-content;
+        padding: 0px;
+        text-align: center;
+        font-size: 12px;
+    }
+
+    .skill {
+        background-color: rgba(122, 122, 122, 0.2);  
+        backdrop-filter: blur(3px);  
+        padding: 0.5rem 1rem;
+        border-radius: 20px;
+        font-size: 0.7rem;
+        color: rgba(255, 255, 255, 0.8);  
+        box-shadow: 
+            0 4px 6px rgba(0, 0, 0, 0.1),
+            inset 0 1px 0 rgba(255, 255, 255, 0.1);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    
+    .skill:hover {
+        background-color: rgba(255, 255, 255, 0.2);
+        transform: translateY(-2px);
+        box-shadow: 
+            0 6px 8px rgba(0, 0, 0, 0.15),
+            inset 0 1px 0 rgba(255, 255, 255, 0.2);
+    }
+
     .timeline {
         display: flex;
         flex-direction: column;
@@ -646,13 +810,14 @@ textarea {
 
     .timeline-content ul li {
         text-align: left; 
+        font-size: 13px;
     }
 
     .timeline-item {
         width: 100%;
         padding-left: 70px;
         padding-right: 25px;
-        font-size: 14px;
+        font-size: 12px;
         text-align: center;
     }
 
