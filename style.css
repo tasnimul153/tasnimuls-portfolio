@@ -904,6 +904,7 @@ textarea {
         flex-direction: column;
         align-items: center;
         gap: 10px;
+        margin-left: 20px;
     }
 
     .btn {
