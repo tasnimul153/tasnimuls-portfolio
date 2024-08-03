@@ -618,6 +618,89 @@ textarea {
     transition: transform 0.2s ease;
 }
 
+/*---------------------------------------------*/
+#contact {
+    padding: 4rem 5%;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+}
+
+#contact h2 {
+    text-align: center;
+    color: var(--secondary-color);
+    margin-bottom: 2rem;
+}
+
+.contact-container {
+    display: flex;
+    justify-content: space-between;
+    max-width: 1000px;
+    margin: 0 auto;
+    background: var(--card-bg);
+    border-radius: 15px;
+    padding: 2rem;
+    backdrop-filter: blur(3px);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.contact-info {
+    flex: 1;
+    padding-right: 2rem;
+}
+
+.contact-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.contact-item i {
+    color: var(--accent-color);
+    margin-right: 1rem;
+    font-size: 1.2rem;
+}
+
+.contact-item a {
+    color: var(--text-color);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.contact-item a:hover {
+    color: var(--accent-color);
+}
+
+.contact-message {
+    flex: 1;
+    border-left: 1px solid var(--accent-color);
+    padding-left: 2rem;
+}
+
+.contact-message p {
+    font-style: italic;
+    line-height: 1.6;
+}
+
+@media (max-width: 768px) {
+    .contact-container {
+        flex-direction: column;
+    }
+
+    .contact-info {
+        padding-right: 0;
+        margin-bottom: 2rem;
+    }
+
+    .contact-message {
+        border-left: none;
+        border-top: 1px solid var(--accent-color);
+        padding-left: 0;
+        padding-top: 2rem;
+    }
+}
+
+/*---------------------------------------------------*/
+
 @media (max-width: 1100px) {
 
     #projects h2 {
@@ -788,6 +871,24 @@ textarea {
 
 
 @media screen and (max-width: 432px) {
+
+    .contact-message {
+        border-left: none;
+        border-top: 1px solid var(--accent-color);
+        padding-left: 0;
+        padding-top: 2rem;
+    }
+
+    .project-card p {
+        font-size: 12px;
+    }
+
+    .learn-more {
+        background: rgba(255, 255, 255, 0.13);
+        color: rgba(255, 255, 255, 0.63);
+        padding: 0.3rem 1rem;
+        font-size: 12px;
+    }
 
     .section-title {
         font-size: 1rem;
