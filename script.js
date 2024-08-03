@@ -220,19 +220,31 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // Update active navigation link on scroll
-    function updateActiveNavLink() {
-        const sections = document.querySelectorAll('section');
-        const navLinks = document.querySelectorAll('nav a');
-
-        sections.forEach((section, index) => {
-            const rect = section.getBoundingClientRect();
-            if (rect.top <= 100 && rect.bottom >= 100) {
-                navLinks.forEach(link => link.classList.remove('active'));
-                navLinks[index].classList.add('active');
-            }
-        });
-    }
-
-    window.addEventListener('scroll', updateActiveNavLink);
+    
 });
+
+// Update active navigation link on scroll
+function updateActiveNavLink() {
+    const sections = document.querySelectorAll('section');
+    const navLinks = document.querySelectorAll('nav a');
+    let scrollPosition = document.documentElement.scrollTop || document.body.scrollTop;
+    let windowHeight = window.innerHeight;
+    let documentHeight = document.documentElement.scrollHeight;
+
+    sections.forEach((section, index) => {
+        const rect = section.getBoundingClientRect();
+        const sectionTop = rect.top + scrollPosition;
+        const sectionHeight = section.offsetHeight;
+        
+        // For the last section, make sure to include the case where user has scrolled to the bottom of the page
+        if (scrollPosition >= sectionTop - 100 && scrollPosition < sectionTop + sectionHeight - 100) {
+            navLinks.forEach(link => link.classList.remove('active'));
+            navLinks[index].classList.add('active');
+        } else if (scrollPosition + windowHeight >= documentHeight) {
+            navLinks.forEach(link => link.classList.remove('active'));
+            navLinks[navLinks.length - 1].classList.add('active');
+        }
+    });
+}
+
+window.addEventListener('scroll', updateActiveNavLink);
