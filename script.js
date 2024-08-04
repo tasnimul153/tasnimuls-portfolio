@@ -1,4 +1,131 @@
 document.addEventListener('DOMContentLoaded', () => {
+
+    /* -------------------------- Skills --------------------------------------- */
+    const skillData = [
+        {
+            name: "WEB",
+            level: "Expert",
+            color: "#FF6B6B",
+            subSkills: ["HTML", "CSS", "JS", "React", "Node.js", "Next.js"]
+        },
+        {
+            name: "AI",
+            level: "Advanced",
+            color: "#4ECDC4",
+            subSkills: ["Python", "TensorFlow", "PyTorch", "Scikit-learn"]
+        },
+        {
+            name: "CLOUD",
+            level: "Intermediate",
+            color: "#45B7D1",
+            subSkills: ["AWS", "Docker", "Kubernetes"]
+        },
+        {
+            name: "DATABASE",
+            level: "Advanced",
+            color: "#F9D56E",
+            subSkills: ["SQL", "MongoDB", "Firebase"]
+        },
+        {
+            name: "MOBILE",
+            level: "Intermediate",
+            color: "#FF8C42",
+            subSkills: ["iOS"]
+        }
+    ];
+
+    const skillContainer = document.querySelector('.skill-container');
+    const tooltip = document.getElementById('skill-tooltip');
+
+    skillData.forEach((skill, index) => {
+        const skillCircle = createSkillCircle(skill, index);
+        skillContainer.appendChild(skillCircle);
+    });
+
+    function createSkillCircle(skill, index) {
+        const circle = document.createElement('div');
+        circle.className = 'skill-circle';
+        circle.style.setProperty('--skill-color', skill.color);
+
+        const content = document.createElement('div');
+        content.className = 'skill-content';
+        content.innerHTML = `
+        <div class="skill-title">${skill.name}</div>
+        <div class="skill-level">${skill.level}</div>
+    `;
+
+        circle.appendChild(content);
+
+        // Create sub-skills
+        skill.subSkills.forEach((subSkill, subIndex) => {
+            const subCircle = createSubSkillCircle(subSkill, subIndex, skill.subSkills.length);
+            circle.appendChild(subCircle);
+        });
+
+        // Hover effects
+        circle.addEventListener('mouseenter', () => showSubSkills(circle));
+        circle.addEventListener('mouseleave', () => hideSubSkills(circle));
+
+        // Tooltip
+        circle.addEventListener('click', (e) => showTooltip(e, skill));
+
+        return circle;
+    }
+
+    function createSubSkillCircle(subSkill, index, total) {
+        const subCircle = document.createElement('div');
+        subCircle.className = 'sub-skill';
+
+        const angle = (index / total) * 2 * Math.PI;
+        const radius = 120;
+        const x = Math.cos(angle) * radius;
+        const y = Math.sin(angle) * radius;
+
+        subCircle.style.transform = `translate(${x}px, ${y}px)`;
+
+        const content = document.createElement('div');
+        content.className = 'sub-skill-content';
+        content.textContent = subSkill;
+
+        subCircle.appendChild(content);
+
+        return subCircle;
+    }
+
+    function showSubSkills(circle) {
+        const subSkills = circle.querySelectorAll('.sub-skill');
+        subSkills.forEach(subSkill => {
+            subSkill.style.opacity = '1';
+        });
+    }
+
+    function hideSubSkills(circle) {
+        const subSkills = circle.querySelectorAll('.sub-skill');
+        subSkills.forEach(subSkill => {
+            subSkill.style.opacity = '0';
+        });
+    }
+
+    function showTooltip(event, skill) {
+        tooltip.innerHTML = `
+        <h3>${skill.name}</h3>
+        <p>Level: ${skill.level}</p>
+        <p>Sub-skills: ${skill.subSkills.join(', ')}</p>
+    `;
+        tooltip.style.display = 'block';
+        tooltip.style.left = `${event.pageX}px`;
+        tooltip.style.top = `${event.pageY}px`;
+
+        document.addEventListener('click', hideTooltip);
+    }
+
+    function hideTooltip() {
+        tooltip.style.display = 'none';
+        document.removeEventListener('click', hideTooltip);
+    }
+
+    /* --------------------------------------------------------------------------*/
+
     // Background animation
     const canvas = document.getElementById('background-canvas');
     const ctx = canvas.getContext('2d');
@@ -86,8 +213,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const cursor = document.querySelector("#cursor");
 
     document.addEventListener("mousemove", (e) => {
-    cursor.style.left = e.clientX + "px";
-    cursor.style.top = e.clientY + "px";
+        cursor.style.left = e.clientX + "px";
+        cursor.style.top = e.clientY + "px";
     });
 
 
@@ -219,8 +346,6 @@ document.addEventListener('DOMContentLoaded', () => {
             scrub: true
         }
     });
-
-    
 });
 
 // Update active navigation link on scroll
@@ -235,7 +360,7 @@ function updateActiveNavLink() {
         const rect = section.getBoundingClientRect();
         const sectionTop = rect.top + scrollPosition;
         const sectionHeight = section.offsetHeight;
-        
+
         // For the last section, make sure to include the case where user has scrolled to the bottom of the page
         if (scrollPosition >= sectionTop - 100 && scrollPosition < sectionTop + sectionHeight - 100) {
             navLinks.forEach(link => link.classList.remove('active'));

@@ -681,6 +681,145 @@ textarea {
     line-height: 1.6;
 }
 
+/*----------------------- SKILLS -------------------------*/
+#skill-tree h2 {
+    margin-left: 5rem;
+    margin-bottom: 2rem;
+}
+
+#skill-tree {
+    padding: 4rem 5%;
+    color: #E0E0E0;
+}
+
+.skill-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.skill-circle {
+    width: 170px;
+    height: 170px;
+    margin: 15px;
+    padding: 10px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border-radius: 50%;
+    overflow: visible; 
+}
+
+.skill-circle:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(2px);
+    z-index: 1;
+    transition: all 0.3s ease;
+    border-radius: 50%;
+}
+
+.skill-circle:hover:before {
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(4px);
+}
+
+.skill-content {
+    z-index: 2;
+    text-align: center;
+}
+
+.skill-title {
+    font-size: 1rem;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.skill-level {
+    font-size: 0.8rem;
+    opacity: 0.8;
+}
+
+.sub-skill {
+    position: absolute;
+    width: 60px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: all 0.3s ease;
+    border-radius: 50%;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    z-index: 4;
+    backdrop-filter: blur(8px);
+    overflow: hidden;
+    pointer-events: none; 
+}
+
+.skill-circle:hover .sub-skill {
+    opacity: 1; /* Show sub-skills on hover */
+}
+
+.sub-skill:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.1);
+    z-index: 1;
+}
+
+.sub-skill-content {
+    z-index: 2;
+    font-size: 0.7rem;
+    text-align: center;
+}
+
+.tooltip {
+    position: absolute;
+    background: rgba(0, 0, 0, 0.8);
+    color: #fff;
+    padding: 10px;
+    border-radius: 5px;
+    display: none;
+    z-index: 100;
+}
+
+.connection {
+    position: absolute;
+    background: rgba(255, 255, 255, 0.2);
+    transition: all 0.3s ease;
+}
+
+@media (max-width: 480px) {
+    #skills h2 {
+        font-size: 1.8rem;
+    }
+
+    .skill-category h3 {
+        font-size: 1.2rem;
+    }
+
+    .skill-item {
+        font-size: 0.8rem;
+    }
+}
+/*--------------------------------------------------------*/
+
 @media (max-width: 768px) {
     .contact-container {
         flex-direction: column;
@@ -698,8 +837,6 @@ textarea {
         padding-top: 2rem;
     }
 }
-
-/*---------------------------------------------------*/
 
 @media (max-width: 1100px) {
 
@@ -867,8 +1004,6 @@ textarea {
         font-size: 15px;
     }
 }
-
-
 
 @media screen and (max-width: 432px) {
 
